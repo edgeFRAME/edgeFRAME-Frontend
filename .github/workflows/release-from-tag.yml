@@ -1,0 +1,37 @@
+name: Create Release from Tag
+on:
+  push:
+    tags:
+      - 'v*'      # Se activa con cualquier tag que empiece con 'v'
+      - '[0-9]*'  # O con cualquier tag que empiece con número
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Get tag info
+        id: tag_info
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "🏷️ Creating release for tag: $TAG_NAME"
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag_info.outputs.tag_name }}
+          name: "🚀 EdgeFRAME ${{ steps.tag_info.outputs.tag_name }}"
+          body: |
+            ## 🎬 EdgeFRAME Release ${{ steps.tag_info.outputs.tag_name }}
+            ---
+            *This release was generated automatically from tag ${{ steps.tag_info.outputs.tag_name }}*
+          draft: false
+          prerelease: false
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

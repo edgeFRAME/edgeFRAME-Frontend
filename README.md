@@ -117,7 +117,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 3. Hacer commits de los cambios siguiendo el prefijo `feat: ` o `fix: ` según corresponda
 4. Publicar la feature: `git flow feature/bugfix publish nombre-feature`
 5. Abrir un Pull Request en GitHub desde la rama de feature a `develop`
-6. Una vez aprobado el PR, hacer merge a `develop` y borrar la rama de feature de forma local y remota
+6. Una vez aprobado el PR, hacer checkout a `develop`, hacer pull para actualizar, y borrar la rama de feature de forma local y remota
 
 ---
 

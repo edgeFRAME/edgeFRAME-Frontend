@@ -1,7 +1,7 @@
 export function setupDropFile() {
-  const dropArea = document.getElementById('drop-area') as HTMLLabelElement
+  // const dropArea = document.getElementById('drop-area') as HTMLLabelElement
   const inputFile = document.getElementById('input-file') as HTMLInputElement
-  const imgView = document.getElementById('img-view') as HTMLDivElement
+  // const imgView = document.getElementById('img-view') as HTMLDivElement
 
   inputFile.addEventListener('change', handleFileSelect)
 

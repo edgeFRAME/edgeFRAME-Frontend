@@ -20,7 +20,7 @@ export function setupDropFile() {
       alert('File size exceeds 200MB limit.');
       return;
     }
-    // Debug: show the file name
+    // Debug: shows the file name
     console.log('Selected file: ', file.name);
     console.log('File size (bytes): ', file.size)
     console.log('File type: ', file.type)

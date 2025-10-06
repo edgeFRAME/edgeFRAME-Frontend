@@ -108,4 +108,12 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 
 Hecho con ❤️ y mucho ☕ por el equipo de EdgeFRAME
 
+
+**Cómo hacer el CI/CD con GitHub Actions y GitFlow**
+1. Situarse en la rama `develop`
+2. Crear una rama de release: `git flow release start x.x.x` (donde `x.x.x` es la versión, por ejemplo `0.1.0`)
+3. Hacer commit de los cambios en la rama release
+4. Finalizar la release: `git flow release finish x.x.x`
+5. Subir los cambios a GitHub: `git push origin main develop --tags`
+
 </div>

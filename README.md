@@ -103,7 +103,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 ## 🌲 Cómo hacer el CI/CD con GitHub Actions y GitFlow
 
 1. Situarse en la rama `develop`
-2. Crear una rama de release: `git flow release start x.x.x` (donde `x.x.x` es la versión, por ejemplo `0.1.0`)
+2. Crear una rama de release: `git flow release start x.x.x` (donde `x.x.x` es la versión, por ejemplo `0.1.0`) **IMPORTANTE**: Usar un tag nuevo cada vez, no repetir tags
 3. Hacer commit de los cambios en la rama release
 4. Finalizar la release: `git flow release finish x.x.x`
 - Añadir un texto para el commit de la release (opcional)

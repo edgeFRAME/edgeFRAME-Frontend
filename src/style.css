@@ -24,9 +24,9 @@
 }
 
 #img-view {
-  width: 100%;
+  width: 440px;          /* Anchura fija invariable */
   height: 100%;
-  border-radius: 20px;
+  border-radius: 5px;
   border: 2px dashed #bbb5ff;
   background: #f7f8ff;
 }
@@ -36,9 +36,28 @@
   margin-top: 25px;
 }
 
-#img-view span {
-  display: block;
-  font-size: 12px;
-  color: #777;
-  margin-top: 15px;
+#file-info {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 0;
+  place-items: center;
+  align-items: center;       /* Centrado vertical específico */
+  min-height: 200px;         /* Altura mínima para ver el efecto */
+}
+
+#file-details {
+  word-wrap: break-word;      /* Rompe palabras largas */
+  word-break: break-word;     /* Fuerza el corte de palabras */
+  overflow-wrap: break-word;  /* Compatibilidad moderna */
+  max-width: 100%;           /* No exceder el contenedor */
+}
+
+#file-details p {
+  margin: 5px 0;
+  line-height: 1.4;
+  overflow: hidden;          /* Ocultar desbordamiento */
+  text-overflow: ellipsis;   /* Mostrar "..." si es muy largo */
+  white-space: nowrap;       /* Una sola línea */
+  max-width: 100%;          /* No exceder el contenedor */
+  box-sizing: border-box;    /* Incluir padding en el ancho */
 }

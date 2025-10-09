@@ -2,6 +2,8 @@ import './style.css'
 import cloudUploadImg from './assets/cloud_upload.png'
 import { setupDropFile } from './drop_file_script'
 
+const UPLOAD_LIMIT_MB = 200
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="container">
     <label for="input-file" id="drop-area">
@@ -9,7 +11,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       <div id="img-view">
         <img src="${cloudUploadImg}"/>
         <p>Click or Drop your video here</p>
-        <span>Upload up to 200MB</span>
+        <span>Upload up to ${UPLOAD_LIMIT_MB}MB</span>
       </div>
     </label>
   </div>

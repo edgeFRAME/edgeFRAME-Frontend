@@ -1,7 +1,7 @@
 export function setupDropFile() {
   // const dropArea = document.getElementById('drop-area') as HTMLLabelElement
   const inputFile = document.getElementById('input-file') as HTMLInputElement
-  const imgView = document.getElementById('img-view') as HTMLDivElement
+  const imgView = document.getElementById('upload') as HTMLDivElement
 
   inputFile.addEventListener('change', handleFileSelect)
 
@@ -25,7 +25,6 @@ export function setupDropFile() {
     console.log('File size (bytes): ', file.size)
     console.log('File type: ', file.type)
     
-    // Mostrar loading mientras se genera el thumbnail
     imgView.innerHTML = `
       <div id="file-info">
         <div id="thumb">
@@ -74,6 +73,7 @@ function extractVideoThumbnail(file: File, callback: (thumbnailURL: string) => v
 
   video.addEventListener('seeked', () => {
     if (context) {
+      // will draw the video frame to canvas
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
       // Convert canvas to data URL (base64)
       const thumbnailURL = canvas.toDataURL('image/jpeg', 0.8);

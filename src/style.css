@@ -15,34 +15,56 @@
 }
 
 #drop-area{
-  width: 500px;
-  height: 300px;
+  width: 770px;
+  height: 400px;
   padding: 30px;
   background: #fff;
   text-align: center;
   border-radius: 20px;
 }
 
-#img-view {
-  width: 440px;          /* Anchura fija invariable */
+#upload {
+  width: 100%;          /* Anchura fija invariable */
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #bbb5ff;
+  background: #f7f8ff;
+}
+
+#upload span {
+  color: rgb(95, 95, 95);
+}
+
+#img-view-pic {
+  width: 440px;         
   height: 100%;
   border-radius: 5px;
   border: 2px dashed #bbb5ff;
   background: #f7f8ff;
 }
 
-#img-view img {
-  width: 100px;
-  margin-top: 25px;
+#thumb {
+  width: 325px;
+  height: 180px;
+}
+
+#thumb img {
+  width: 100%;
+  height: 100%;
 }
 
 #file-info {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 50% 50%;
   gap: 0;
   place-items: center;
   align-items: center;       /* Centrado vertical específico */
-  min-height: 200px;         /* Altura mínima para ver el efecto */
+  width: 100%;               /* Ocupa todo el ancho del padre */
+  height: 100%;              /* Ocupa toda la altura del padre */
 }
 
 #file-details {

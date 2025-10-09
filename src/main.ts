@@ -8,7 +8,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="container">
     <label for="input-file" id="drop-area">
       <input type="file" accept="video/*" id="input-file" hidden />
-      <div id="img-view">
+      <div id="upload">
         <img src="${cloudUploadImg}"/>
         <p>Click or Drop your video here</p>
         <span>Upload up to ${UPLOAD_LIMIT_MB}MB</span>

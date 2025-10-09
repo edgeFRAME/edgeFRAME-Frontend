@@ -68,7 +68,7 @@ function extractVideoThumbnail(file: File, callback: (thumbnailURL: string) => v
   video.addEventListener('loadedmetadata', () => {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    video.currentTime = Math.min(1, video.duration / 2);
+    video.currentTime = Math.round(Math.random() * video.duration);
   });
 
   video.addEventListener('seeked', () => {

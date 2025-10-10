@@ -1,0 +1,23 @@
+name: Build (develop)
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      
+      # Solo en develop: mensaje de éxito
+      - name: Build successful (Development)
+        run: echo "✅ Build completed successfully! Ready for merge to main."
+        

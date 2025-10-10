@@ -109,14 +109,15 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 6. Una vez aprobado el PR, hacer checkout a `develop`, hacer pull para actualizar, y borrar la rama de feature de forma local y remota
 
 ## 🌲 Cómo hacer el CI/CD con GitHub Actions y GitFlow
-0. **Comprobar que todo funciona correctamente en la rama `develop` (build check automático)**
-1. Situarse en la rama `develop`
-2. Crear una rama de release: `git flow release start x.x.x` (donde `x.x.x` es la versión, por ejemplo `0.1.0`) **IMPORTANTE**: Usar un tag nuevo cada vez, no repetir tags
-3. Hacer commits de cambios de última hora (opcional)
-4. Finalizar la release: `git flow release finish x.x.x`
+1. Situarse en la rama `main` y hacer pull para actualizar (hacer lo mismo en `develop`)
+2. **Comprobar que todo funciona correctamente en la rama `develop` (build check automático)**
+3. Situarse en la rama `develop`
+4. Crear una rama de release: `git flow release start x.x.x` (donde `x.x.x` es la versión, por ejemplo `0.1.0`) **IMPORTANTE**: Usar un tag nuevo cada vez, no repetir tags
+5. Hacer commits de cambios de última hora (opcional)
+6. Finalizar la release: `git flow release finish x.x.x`
 - Añadir un texto para el commit de la release (opcional)
 - Añadir un tag para la tag de la release (**obligatorio**)
-5. Subir los cambios a GitHub: `git push origin main develop --tags`
+7. Subir los cambios a GitHub: `git push origin main develop --tags`
 
 ---
 

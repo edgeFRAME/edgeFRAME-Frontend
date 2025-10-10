@@ -17,7 +17,7 @@
 
 ## 🌟 ¿Qué es EdgeFRAME?
 
-EdgeFRAME es una aplicación web moderna que permite a los usuarios subir videos de anime y aplicar técnicas avanzadas de **upscaling con inteligencia artificial** para mejorar significativamente la calidad visual. Perfecto para restaurar anime clásico o mejorar videos de baja resolución.
+EdgeFRAME es una aplicación web moderna que permite a los usuarios subir videos de anime y aplicar técnicas de **upscaling con inteligencia artificial** para mejorar significativamente la calidad visual. Perfecto para restaurar anime clásico o mejorar videos de baja resolución.
 
 ## 🛠️ Tecnologías Utilizadas
 

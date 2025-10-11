@@ -8,7 +8,7 @@ function App() {
     <>
       <div id="layout">
         <header></header>
-        <main>
+        <main className='magicpattern'>
           <DropFile maxSize={200} dataUnit='MB'/> {/* Magic Number solucionar */}
         </main>
         <footer></footer>

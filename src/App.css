@@ -1,0 +1,22 @@
+#layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa toda la ventana */
+}
+
+header {
+  background: #FFC300;
+  height: 10%;
+}
+
+main {
+  flex: 1; /* Ocupa el espacio restante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  background: #001122;
+  height: 10%;
+}

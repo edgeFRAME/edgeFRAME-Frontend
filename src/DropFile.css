@@ -1,0 +1,24 @@
+#drop-area {
+    background: #cbcbcb;
+    width: 50%;
+    height: 60%;
+    border-radius: 20px;
+    /*----*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#img-view {
+    width: 92%;
+    height: 80%;
+    border-radius: 20px;
+    border: 2px dashed #FFC300;
+    background: #c8c8ca;
+    /*----*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

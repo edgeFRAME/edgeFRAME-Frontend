@@ -18,7 +18,7 @@ const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
 
 function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
     const [changeDropArea, setDropArea] = useState(false);
-    const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    const handleDrop = async (e: React.DragEvent<HTMLLabelElement>) => {
         // Don't make the default stuff 
         e.preventDefault();
         const file = e.dataTransfer?.files?.[0];
@@ -27,7 +27,7 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
             const processedFile = processFile(file, maxSize, dataUnit);
             if (processedFile) {
                 console.log('File processed successfully:');
-                getThumbnail(file);
+                await getThumbnail(file);
                 setDropArea(true);
                 // Post file to server
 
@@ -42,7 +42,7 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
         console.log('File dropped successfully');
     }
     return <>
-        <label htmlFor="input-file" id="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
+        <label htmlFor="input-file" id="drop-area" onDrop={handleDrop} onDragOver={handleDragOver} onChange={handleDrop}>
             <input id="input-file" type="file" accept="video/*" hidden />
             <div id="img-view">
                 <img src={cloudUploadImage} alt="Drop it!"></img>

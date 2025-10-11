@@ -1,3 +1,3 @@
-export function error() {
-  console.log("error");
+export function error(errorCode : number) {
+  console.log("Error code: " + errorCode);
 }

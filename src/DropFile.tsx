@@ -3,23 +3,14 @@ import cloudUploadImage from './assets/cloud_upload.png';
 import { processFile } from './utils/processFile'
 import { error } from './utils/error'
 
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 
 interface DropFileProps {
     maxSize: number;
     dataUnit?: 'MB' | 'GB'; // Optional prop with a default value
 }
 
-const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
-    // Don't make the default stuff 
-    e.preventDefault();
-    const file = e.dataTransfer?.files?.[0];
-    // if file is null is false
-    if (file) processFile(file);
-    else error();
 
-    // Cambio en el estilo del drop-area
-}
 
 const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
@@ -27,7 +18,25 @@ const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
 }
 
 function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
-    
+    //const [changeDropArea, setDropArea] = useState(false);
+    const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+        // Don't make the default stuff 
+        e.preventDefault();
+        const file = e.dataTransfer?.files?.[0];
+        // if file is null is false
+        if (file) {
+            const processedFile = processFile(file, maxSize, dataUnit);
+            if (processedFile) {
+                console.log('File processed successfully:', processedFile);
+                
+                // Post file to server
+            }
+        }
+        // error: problem with the file, try again
+        else error(2);
+
+        // Cambio en el estilo del drop-area
+    }
     return <>
         <label htmlFor="input-file" id="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
             <input id="input-file" type="file" accept="video/*" hidden />

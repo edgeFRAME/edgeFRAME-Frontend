@@ -1,0 +1,64 @@
+#drop-area {
+    /* BACKGROUND */
+    background-color: rgba(255, 255, 255, 0.021);
+    backdrop-filter: blur(8px);
+    /* BORDERS */
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.24);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    /* SHADOW */
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    /* SIZE */
+    width: 50%;
+    height: 60%;
+    border-radius: 20px;
+    /*----*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.150s ease;
+
+}
+
+#drop-area:hover {
+    /* BACKGROUND */
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    /* BORDERS */
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    /* SHADOW */
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.4);
+}
+
+
+#img-view {
+    /* SIZE */
+    width: 92%;
+    height: 80%;
+    border-radius: 20px;
+    /* BORDERS */
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    /* BACKGROUND */
+    background-color: rgba(255, 255, 255, 0.021);
+    backdrop-filter: blur(8px);
+    /*----*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+CloudUploadIcon {
+    color: white;
+    font-size: 64px !important;
+    margin-bottom: 16px;
+}
+
+#img-view p, span {
+    color: white;
+}

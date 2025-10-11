@@ -1,5 +1,6 @@
 import './DropFile.css'
-import cloudUploadImage from './assets/cloud_upload.png';
+//import cloudUploadImage from './assets/cloud_upload.png';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { processFile } from './utils/processFile'
 import { error } from './utils/error'
 import { getThumbnail } from './utils/getThumbnail';
@@ -18,10 +19,8 @@ const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
 
 function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
     const [changeDropArea, setDropArea] = useState(false);
-    const handleDrop = async (e: React.DragEvent<HTMLLabelElement>) => {
-        // Don't make the default stuff 
-        e.preventDefault();
-        const file = e.dataTransfer?.files?.[0];
+    const handleDrop = async (e: FileList) => {
+        const file = e?.[0];
         // if file is null is false
         if (file) {
             const processedFile = processFile(file, maxSize, dataUnit);
@@ -30,7 +29,6 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                 await getThumbnail(file);
                 setDropArea(true);
                 // Post file to server
-
             }
         }
         // error: problem with the file, try again
@@ -39,13 +37,13 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
         // Cambio en el estilo del drop-area
     }
     if (changeDropArea) {
-        console.log('File dropped successfully');
+        console.log('Change drop area style');
     }
     return <>
-        <label htmlFor="input-file" id="drop-area" onDrop={handleDrop} onDragOver={handleDragOver} onChange={handleDrop}>
-            <input id="input-file" type="file" accept="video/*" hidden />
+        <label htmlFor="input-file" id="drop-area" onDrop={(e : React.DragEvent<HTMLLabelElement>) => {handleDrop(e.dataTransfer.files)}} onDragOver={handleDragOver}>
+            <input id="input-file" type="file" accept="video/*" hidden onChange={(e : React.ChangeEvent<HTMLInputElement>) => handleDrop(e.target.files!)}/>
             <div id="img-view">
-                <img src={cloudUploadImage} alt="Drop it!"></img>
+                <CloudUploadIcon sx={{ fontSize: 150, color: 'white' }} />
                 <p>Drag and drop or click here to upload image</p>
                 <span>Max size {maxSize} {dataUnit}</span>
             </div>

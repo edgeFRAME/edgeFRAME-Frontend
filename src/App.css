@@ -7,7 +7,12 @@
 header {
   background: #e7b202;
   height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 main {
   flex: 1; /* Ocupa el espacio restante */

@@ -25,7 +25,6 @@ const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
 }
 
 function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
-    const [changeDropArea, setDropArea] = useState(false);
     const [thumbnail, setThumbnail] = useState("");
     const [file, setFile] = useState<File | null>(null);
     const [snackbar, setSnackbar] = useState<SnackbarState>({
@@ -48,7 +47,6 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
             } else {
                 console.log('File processed successfully:');
                 setThumbnail(await getThumbnail(file_));
-                setDropArea(true); // re-render
                 setFile(processedFile);
                 // Post file to server
             }
@@ -64,46 +62,6 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
 
         // Cambio en el estilo del drop-area
     }
-    if (changeDropArea) {
-        return <>
-            <div id="dropfile-container">
-                <label htmlFor="input-file" id="drop-area" onDrop={(e: React.DragEvent<HTMLLabelElement>) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleDrop(e.dataTransfer.files);
-                }}
-                    onDragOver={handleDragOver}>
-                    <input id="input-file" type="file" accept="video/*" hidden onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleDrop(e.target.files!)
-                    }} />
-                    <div id="img-view" className='success'>
-                        <div id="img-thumb">
-                            <img id="thumbnail" alt="video thumbnail" src={thumbnail} />
-                        </div>
-                        <div id="file-info">
-                            <p><strong>Name:</strong> {file?.name}</p>
-                            <p><strong>Size:</strong> {file?.size} bytes</p>
-                            <p><strong>Type:</strong> {file?.type}</p>
-                        </div>
-                    </div>
-                </label>
-                <div id='notification-order'>
-                    <Snackbar
-                        open={snackbar.open}
-                        autoHideDuration={6000}
-                        onClose={() => setSnackbar({ ...snackbar, open: false})}
-                        sx={{
-                            position: 'relative',
-                        }}
-                    >
-                        <Alert severity={snackbar.severity} sx={{ width: '100%' }}>{snackbar.message}</Alert>
-                    </Snackbar>
-                </div>
-            </div >
-        </>
-    }
     return <>
         <div id="dropfile-container">
             <label htmlFor="input-file" id="drop-area" onDrop={(e: React.DragEvent<HTMLLabelElement>) => {
@@ -117,17 +75,34 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                     e.stopPropagation();
                     handleDrop(e.target.files!)
                 }} />
-                <div id="img-view">
-                    <CloudUploadIcon sx={{ fontSize: 150, color: 'white' }} />
-                    <p>Drag and drop or click here to upload image</p>
-                    <span>Max size {maxSize} {dataUnit}</span>
-                </div>
+                {file ? (
+                    <>
+                        <div id="img-view" className='success'>
+                            <div id="img-thumb">
+                                <img id="thumbnail" alt="video thumbnail" src={thumbnail} />
+                            </div>
+                            <div id="file-info">
+                                <p><strong>Name:</strong> {file?.name}</p>
+                                <p><strong>Size:</strong> {file?.size} bytes</p>
+                                <p><strong>Type:</strong> {file?.type}</p>
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div id="img-view">
+                            <CloudUploadIcon sx={{ fontSize: 150, color: 'white' }} />
+                            <p>Drag and drop or click here to upload image</p>
+                            <span>Max size {maxSize} {dataUnit}</span>
+                        </div>
+                    </>
+                )}
             </label>
             <div id='notification-order'>
                 <Snackbar
                     open={snackbar.open}
                     autoHideDuration={10000}
-                    onClose={() => setSnackbar({ ...snackbar, open: false})}
+                    onClose={() => setSnackbar({ ...snackbar, open: false })}
                     sx={{
                         position: 'relative',
                     }}

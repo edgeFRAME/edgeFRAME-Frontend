@@ -17,6 +17,7 @@ header {
 main {
   flex: 1; /* Ocupa el espacio restante */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

@@ -53,6 +53,7 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
         }
         // error: problem with the file, try again
         else {
+            console.log('Error with the file');
             setSnackbar({
                 open: true,
                 message: error(2),
@@ -73,7 +74,8 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                 <input id="input-file" type="file" accept="video/*" hidden onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    handleDrop(e.target.files!)
+                    handleDrop(e.target.files!);
+                    e.target.value = '';
                 }} />
                 {file ? (
                     <>
@@ -101,13 +103,19 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
             <div id='notification-order'>
                 <Snackbar
                     open={snackbar.open}
-                    autoHideDuration={10000}
+                    autoHideDuration={6000}
                     onClose={() => setSnackbar({ ...snackbar, open: false })}
                     sx={{
                         position: 'relative',
                     }}
                 >
-                    <Alert severity={snackbar.severity} sx={{ width: '100%' }}>{snackbar.message}</Alert>
+                    <Alert 
+                        severity={snackbar.severity} 
+                        sx={{ width: '100%' }}
+                        onClose={() => setSnackbar({...snackbar, open: false })}
+                    >
+                        {snackbar.message}
+                    </Alert>
                 </Snackbar>
             </div>
         </div>

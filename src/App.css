@@ -10,7 +10,19 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+#title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  font-size: 2.5em;
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  padding: 0;
+  user-select: none; /* Evita la selección del texto */
+
 }
 
 

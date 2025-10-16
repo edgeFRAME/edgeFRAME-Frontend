@@ -48,7 +48,6 @@ export async function getThumbnail(file: File): Promise<string> {
           if (ctx) {
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
             const imgUrl = canvas.toDataURL('image/png');
-            console.log('Thumbnail URL:', imgUrl);
             resolve(imgUrl); // ← Retorna la URL
           }
           URL.revokeObjectURL(temporalUrl);

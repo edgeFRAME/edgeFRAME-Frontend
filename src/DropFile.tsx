@@ -1,10 +1,13 @@
 import './DropFile.css'
-//import cloudUploadImage from './assets/cloud_upload.png';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { Button } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 import { Alert, Snackbar } from '@mui/material';
 import { processFile } from './utils/processFile'
 import { error } from './utils/error'
 import { getThumbnail } from './utils/getThumbnail';
+import axiosInstance from './config/axios-config';
+import { AxiosError } from 'axios';
 
 import React, { useState } from 'react'
 
@@ -32,7 +35,6 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
         message: '',
         severity: 'info',
     });
-
     const handleDrop = async (e: FileList) => {
         const file_ = e?.[0];
         // if file is null is false
@@ -60,8 +62,22 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                 severity: 'error',
             });
         }
-
-        // Cambio en el estilo del drop-area
+    }
+    const handleButtonPost = async () => {
+        try {
+            const response = await axiosInstance.get("/status");
+            console.log('Response:', response.data);
+            setSnackbar({open: true, message: 'Petición exitosa!', severity: 'success'});
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                console.error('AxiosError details:')
+                setSnackbar({open: true, message: error.message,severity: 'error'});
+            } else {
+                console.error('Unexpected error type:', error);
+                setSnackbar({
+                    open: true, message: 'Error desconocido', severity: 'error'});
+            }
+        }
     }
     return <>
         <div id="dropfile-container">
@@ -84,9 +100,16 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                                 <img id="thumbnail" alt="video thumbnail" src={thumbnail} />
                             </div>
                             <div id="file-info">
-                                <p><strong>Name:</strong> {file?.name}</p>
-                                <p><strong>Size:</strong> {file?.size} bytes</p>
-                                <p><strong>Type:</strong> {file?.type}</p>
+                                <div id="info">
+                                    <p><strong>Name:</strong> {file?.name}</p>
+                                    <p><strong>Size:</strong> {file?.size} bytes</p>
+                                    <p><strong>Type:</strong> {file?.type}</p>
+                                </div>
+                                <div id="post">
+                                    <Button id="send-button" endIcon={<SendIcon />}
+                                        onClick={handleButtonPost}
+                                    >POST</Button>
+                                </div>
                             </div>
                         </div>
                     </>
@@ -109,10 +132,10 @@ function DropFile({ maxSize, dataUnit = 'MB' }: DropFileProps) {
                         position: 'relative',
                     }}
                 >
-                    <Alert 
-                        severity={snackbar.severity} 
+                    <Alert
+                        severity={snackbar.severity}
                         sx={{ width: '100%' }}
-                        onClose={() => setSnackbar({...snackbar, open: false })}
+                        onClose={() => setSnackbar({ ...snackbar, open: false })}
                     >
                         {snackbar.message}
                     </Alert>
